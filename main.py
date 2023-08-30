@@ -33,7 +33,7 @@ def home():
 
 @app.get("/")
 def about():
-    file_path = "/config/index.tsx"
+    file_path = "/index.tsx"
     try:
         with open(file_path, "rb") as index_file:
             contents = index_file.read()
