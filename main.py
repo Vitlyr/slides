@@ -32,9 +32,6 @@ def home():
     return {"Data": "Test"}
 
 @app.get("/")
-async def about():
-    # Get the index.tsx file from the staticfiles folder
-    index_file = open("config/index.tsx", "rb")
-
-    # Return the file as a response
-    return FileResponse(index_file)
+def about():
+  index_file = open("index.html", "rb")
+  return FileResponse(index_file.read())
