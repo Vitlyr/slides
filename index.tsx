@@ -1,5 +1,5 @@
 import React from "react";
-import settings from "/static/settings.py";
+import settings from "/config/static/settings.py";
 
 const App = () => {
   const [slides] = useState(settings.slides);

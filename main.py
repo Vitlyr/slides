@@ -1,10 +1,6 @@
-from fastapi import FastAPI, HTTPException, File, UploadFile
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.responses import HTMLResponse, FileResponse, Response
-from typing import Optional
-from pydantic import BaseModel
-from fastapi.params import Body
-import os
+from starlette.responses import FileResponse
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,8 +8,7 @@ load_dotenv()
 app = FastAPI()
 
 # Configure CORS
-origins = [
-]
+origins = []
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,8 +18,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-web = {}
-
 # Add the staticfiles route
 
 @app.get("/docs")
@@ -33,8 +26,7 @@ def home():
 
 @app.get("/")
 def about():
-    file_path = "/index.tsx"
-    with open(file_path, "rb") as index_file:
+    file_path = "/config/static/index.html"
+    with open(file_path, "r") as index_file:
         contents = index_file.read()
-        print(contents)
-    return FileResponse(contents)
+    return FileResponse(contents, media_type="text/html")
