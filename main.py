@@ -33,7 +33,10 @@ def home():
 
 @app.get("/")
 def about():
-  index_file = open("/config/index.tsx", "rb")
-  contents = index_file.read()
-  index_file.close()
-  return FileResponse(contents)
+    file_path = "/config/index.tsx"
+    try:
+        with open(file_path, "rb") as index_file:
+            contents = index_file.read()
+        return FileResponse(contents)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="File not found")
