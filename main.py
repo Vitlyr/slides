@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.responses import FileResponse
+from starlette.responses import FileResponse, HTMLResponse
 from dotenv import load_dotenv
 
 load_dotenv()
