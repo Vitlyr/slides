@@ -26,7 +26,6 @@ def home():
 
 @app.get("/")
 def about():
-    file_path = "/config/static/index.html"
-    with open(file_path, "r") as index_file:
-        contents = index_file.read()
-    return FileResponse(contents, media_type="text/html")
+    with open("config/static/index.html") as f:
+        content = f.read()
+        return Response(content=content, media_type="text/html")
