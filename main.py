@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.responses import FileResponse, HTMLResponse, Response  # Import Response
+from starlette.responses import HTMLResponse, Response
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -28,4 +28,7 @@ def home():
 def about():
     with open("config/static/index.html") as f:
         content = f.read()
-        return Response(content=content, media_type="text/html")  # Use Response from starlette.responses
+    with open("config/static/script.js") as js_file:
+        js_content = js_file.read()
+        content_with_js = content.replace("</body>", f"<script>{js_content}</script></body>")
+        return HTMLResponse(content=content_with_js, media_type="text/html")
