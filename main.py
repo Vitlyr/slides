@@ -33,7 +33,7 @@ def home():
 
 @app.get("/")
 def about():
-  index_file = open("/config/index.html", "rb")
+  index_file = open("/config/index.tsx", "rb")
   contents = index_file.read()
   index_file.close()
   return FileResponse(contents)
